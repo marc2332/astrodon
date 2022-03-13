@@ -9,6 +9,7 @@ import meta from "../../astrodon.meta.ts";
 import { build } from "./commands/build.ts";
 import { init } from "./commands/init.ts";
 import { upgrade } from "./commands/upgrade.ts";
+import { run } from "./commands/run.ts";
 
 // CLI configuration
 
@@ -53,6 +54,13 @@ await new Command()
         default: "my-astrodon-app",
       })
       .action(async (options) => await init(options))
+  )
+  .command(
+    "run [script]",
+    new Command()
+      //Run command
+      .description("Run a script.")
+      .action(async (options, script) => await run(options, script))
   )
   .command(
     "upgrade",
